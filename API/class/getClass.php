@@ -12,18 +12,9 @@ include_once dirname(__FILE__) . '/../../MODEL/class.php';
 $database = new Database();
 $db = $database->connect();
 
-if (!isset($_GET['ID']))
-{
-    http_response_code(400);
-    echo json_encode(array("Message" => "Bad request"));
-    die();
-}
-
-$id = $_GET['ID'];
-
 $class = new Class_($db);
 
-$stmt = $class->getClass($id);
+$stmt = $class->getClass();
 
 if ($stmt->num_rows > 0) // Se la funzione getArchiveOrderStatus ha ritornato dei record
 {
