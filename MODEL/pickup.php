@@ -40,4 +40,13 @@ class PickUp
 
         return $stmt->execute();*/
     }
+
+    public function getPickupById($id)
+    {
+        $sql = 'SELECT id, name
+                FROM pickup
+                WHERE id=' . $id;
+
+        return $this->conn->query($sql);
+    }
 }
