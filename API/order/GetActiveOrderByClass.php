@@ -10,14 +10,14 @@ $db = $database->connect();
 
 $order = new Order($db);
 
-if (!isset($_GET['year']) || !isset($_GET['section']))
+if (!isset($_GET['ID']))
 {
     http_response_code(400);
     echo json_encode(array("Message" => "Bad request"));
     die();
 }
 
-$stmt = $order->getActiveOrderByClass($_GET['year'], $_GET['section']);
+$stmt = $order->getActiveOrderByClass($_GET['ID']);
 
 if ($stmt->num_rows > 0) // Se la funzione getArchiveOrderStatus ha ritornato dei record
 {
