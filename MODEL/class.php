@@ -11,9 +11,9 @@ Class Class_{
         $this->conn=$db;
     }
 
-    public function getClass($id) // Ottiene la ricreazione che ha l'id passato alla funzione   
+    public function getClass() // Ottiene la ricreazione che ha l'id passato alla funzione   
     {
-        $query = "SELECT id, year, section FROM $this->table_name WHERE id = $id";
+        $query = "SELECT id, year, section FROM $this->table_name";
 
         $stmt = $this->conn->query($query);
 
