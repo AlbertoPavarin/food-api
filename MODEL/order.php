@@ -149,5 +149,16 @@
 
             return $this->conn->query($query);;
         }
+
+        function getActiveOrderByClass($year, $section)
+        {
+            $query = "SELECT o.id, c.`section`, c.`year`, o.created, o.pickup, o.break, o.status, o.json
+            FROM $this->table_name o
+            INNER JOIN user_class uc ON o.`user` = uc.`user`
+            INNER JOIN class c ON c.id = uc.class
+            WHERE c.`year` = ". (int)$year .   " AND c.`section` = '" . $section. "' AND o.status = 1";
+
+            return $this->conn->query($query);;
+        }
     }
 ?>

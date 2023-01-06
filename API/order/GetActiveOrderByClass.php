@@ -17,7 +17,7 @@ if (!isset($_GET['year']) || !isset($_GET['section']))
     die();
 }
 
-$stmt = $order->getArchiveOrderByClass($_GET['year'], $_GET['section']);
+$stmt = $order->getActiveOrderByClass($_GET['year'], $_GET['section']);
 
 if ($stmt->num_rows > 0) // Se la funzione getArchiveOrderStatus ha ritornato dei record
 {
