@@ -5,7 +5,7 @@ class ProductController extends BaseController
     public function GetProduct($product_id) //mostra un singolo prodotto
 
     {
-        $sql = "SELECT distinct p.id ,p.name, p.price, t.name as 'Tag', p.description, p.nutritional_value, p.quantity
+        $sql = "SELECT distinct p.id ,p.name, p.price, t.name as 'Tag', p.description, p.nutritional_value, p.quantity, p.active
                 from product p
                 left join product_tag pt on pt.product=p.id
                 left join tag t on t.id=pt.tag
@@ -161,5 +161,15 @@ class ProductController extends BaseController
 
         $result = $this->conn->query($sql);
         $this->SendOutput($result, JSON_OK);
+    }
+    public function setQuantity($product_ID,$quantity){
+        $sql = "update product p
+                set p.quantity =". $quantity ."
+                where p.id = " . $product_ID . ";";
+
+        $result = $this->conn->query($sql);
+        $nRows = mysqli_affected_rows($this->conn);
+        $this->SendState($result, JSON_OK);
+        $this->CheckProduct();
     }
 }
