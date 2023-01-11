@@ -14,7 +14,7 @@ $db = $database->connect();
 
 $class = new Class_($db);
 
-$stmt = $class->getClass();
+$stmt = $class->getClasses();
 
 if ($stmt->num_rows > 0) // Se la funzione getArchiveOrderStatus ha ritornato dei record
 {
