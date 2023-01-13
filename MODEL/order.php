@@ -160,5 +160,16 @@
 
             return $this->conn->query($query);;
         }
+
+        function getActiveOrderByPickup($id)
+        {
+            $query = "SELECT o.id, c.`section`, c.`year`, o.created, o.pickup, o.break, o.status, o.json
+            FROM $this->table_name o
+            INNER JOIN user_class uc ON o.`user` = uc.`user`
+            INNER JOIN class c ON c.id = uc.class
+            WHERE o.pickup=" . $id . " AND o.status = 1";
+
+            return $this->conn->query($query);;
+        }
     }
 ?>
