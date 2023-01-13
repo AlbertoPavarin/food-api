@@ -17,7 +17,7 @@ if (!isset($_GET['ID']))
     die();
 }
 
-$stmt = $order->getArchiveOrderByPickup($_GET['ID']);
+$stmt = $order->getActiveOrderByPickup($_GET['ID']);
 
 if ($stmt->num_rows > 0) // Se la funzione getArchiveOrderStatus ha ritornato dei record
 {
