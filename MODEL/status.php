@@ -30,5 +30,14 @@
             return $stmt->execute();
         }
 
+        public function getArchiveStatus() // Ottiene gli status
+        {
+            $query = "SELECT id, description FROM $this->table_name";
+
+            $stmt = $this->conn->query($query);
+
+            return $stmt;
+        }
+
     }
 ?>
