@@ -172,4 +172,14 @@ class ProductController extends BaseController
         $this->SendState($result, JSON_OK);
         $this->CheckProduct();
     }
+
+    public function setProductIngredient($prod_id, $ing_id)
+    {
+        $sql = "INSERT INTO product_ingredient (product, ingredient)
+                VALUES (" . $prod_id . "," . $ing_id . ");";
+
+        echo $sql;
+
+        $this->conn->query($sql);
+    }
 }
