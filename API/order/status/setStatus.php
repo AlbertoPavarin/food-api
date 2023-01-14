@@ -6,17 +6,16 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once dirname(__FILE__) . '/../../../COMMON/connect.php';
-include_once dirname(__FILE__) . '/../../../MODEL/pickup.php';
+include_once dirname(__FILE__) . '/../../../MODEL/status.php';
 
 $database = new Database();
 $db = $database->connect(); 
 
 $data = json_decode(file_get_contents("php://input")); // Legge dati dalla request body
-var_dump($data);
-if (!empty($data) || !empty($data->name)) // Se qualcosa viene letto
+if (!empty($data) || !empty($data->description)) // Se qualcosa viene letto
 {
-    $pickup = new Pickup($db);
-    $pickup->setPickup($data->name);
+    $status = new Status($db);
+    $status->setStatus($data->description);
     echo json_encode(array("Message" => "Created"));
 }
 else

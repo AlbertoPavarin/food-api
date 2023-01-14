@@ -20,5 +20,15 @@
             return $stmt;
         }
 
+        public function setStatus($description)
+        {
+            $query = "INSERT INTO $this->table_name (description)
+                      VALUES (?);";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('s', $description);
+            return $stmt->execute();
+        }
+
     }
 ?>
