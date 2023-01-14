@@ -18,5 +18,14 @@ class Break_{
 
         return $stmt;
     }
+
+    public function getArchiveBreak() // Ottiene tutte le ricreazioni
+    {
+        $query = "SELECT id, time FROM $this->table_name";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
 }
 ?>
