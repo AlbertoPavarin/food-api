@@ -163,11 +163,11 @@
 
         function getActiveOrderByPickup($id)
         {
-            $query = "SELECT o.id, c.`section`, c.`year`, o.created, o.pickup, o.break, o.status, o.json
+            $query = "SELECT o.id, o.`user`, o.created, o.pickup, o.break, o.status, o.json
             FROM $this->table_name o
-            INNER JOIN user_class uc ON o.`user` = uc.`user`
-            INNER JOIN class c ON c.id = uc.class
-            WHERE o.pickup=" . $id . " AND o.status = 1";
+            INNER JOIN `break` b ON o.`break` = b.id
+            WHERE o.pickup=" . $id . " AND o.status = 1
+            ORDER BY b.time";
 
             return $this->conn->query($query);;
         }

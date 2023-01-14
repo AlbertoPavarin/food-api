@@ -27,8 +27,7 @@ if ($stmt->num_rows > 0) // Se la funzione getArchiveOrderStatus ha ritornato de
        extract($record);
        $order_record = array(
         'id' => $id,
-        'year' => $year,
-        'section' => $section,
+        'user' => $user,
         'created' => $created,
         'pickup' => $pickup,
         'break' => $break,
