@@ -49,4 +49,14 @@ class PickUp
 
         return $this->conn->query($sql);
     }
+
+    public function setPickup($name)
+    {
+        $sql = "INSERT INTO pickup (name)
+                VALUES (?)";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $name);
+        return $stmt->execute();
+    }
 }
