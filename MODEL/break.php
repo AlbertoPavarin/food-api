@@ -27,5 +27,15 @@ class Break_{
 
         return $stmt;
     }
+
+    public function setBreak($time)
+    {
+        $query = "INSERT INTO $this->table_name (`time`)
+                  VALUES ('$time');";
+
+        echo $query;
+
+        return $this->conn->query($query);
+    }
 }
 ?>
