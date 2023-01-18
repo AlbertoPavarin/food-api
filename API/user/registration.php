@@ -17,8 +17,8 @@ $user = new User($db_conn);
 
 if ($user->registration($data->name, $data->surname, $data->email, $data->password) == true) {
     $userID = $user->login($data->email, $data->password);
-    echo json_encode(["message" => "Registration completed", "userID" => $userID]);
+    echo json_encode(["message" => "Registration completed", "userID" => $userID, "response" => true]);
 } else {
-    echo json_encode(["message" => "Registration failed successfully "]);
+    echo json_encode(["message" => "Registration failed successfully ", "response" => false]);
 }
 ?>
