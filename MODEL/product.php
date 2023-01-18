@@ -17,7 +17,7 @@ class ProductController extends BaseController
     public function GetArchiveProducts() //mostra tutti i prodotti
 
     {
-        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.name as 'Tag'
+        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.name as 'Tag', p.quantity, p.active
                 from product p
                 left join product_tag pt on pt.product=p.id
                 left join tag t on t.id=pt.tag
@@ -41,9 +41,18 @@ class ProductController extends BaseController
         $this->SendOutput($result, JSON_OK);
     }
 
+    public function getIngredientById($ingredient_ID)
+    {
+        $sql = "SELECT i.id ,i.name , i.price as 'price', i.extra , i.quantity , i.description
+                from ingredient i
+                where i.id =" . $ingredient_ID . ";";
+
+        $result = $this->conn->query($sql);
+        $this->SendOutput($result, JSON_OK);
+    }
     public function GetIngredient($ingredient_ID)
     {
-        $sql = "SELECT i.id as 'ID',i.name as 'Nome ingrediente', i.quantity as 'Quantita', i.description as 'Descrizione',p.name as 'Prodotto in cui e contenuto'
+        $sql = "SELECT i.id as 'ID',i.name as 'Nome ingrediente', i.price as 'price', i.extra as 'extra', i.quantity as 'Quantita', i.description as 'Descrizione',p.name as 'Prodotto in cui e contenuto'
                 from ingredient i
                 left join product_ingredient pi on pi.ingredient=i.id
                 left join product p on p.id=pi.product 
@@ -92,11 +101,11 @@ class ProductController extends BaseController
     $result = $this->conn->query($sql);
     $this->CheckIngredient();
     }*/
-    public function setIngredient($name, $description, $price, $quantity)
+    public function setIngredient($name, $description, $price, $extra, $quantity)
     {
-        $sql = "insert into ingredient(name, description, price,quantity)
+        $sql = "insert into ingredient(name, description, price,extra,quantity)
         values
-        (" . $name . "," . $description . "," . $price . "," . $quantity . ");";
+        ('$name','$description'," . $price . "," . $extra . "," . $quantity . ");";
 
         $this->conn->query($sql);
         $this->CheckIngredient();
@@ -105,7 +114,7 @@ class ProductController extends BaseController
     {
         $sql = "insert into product(name, price, description, quantity, nutritional_value,active)
                 values
-                ('$name', " . $price . ",'$description', " . $quantity . ", " . $nutritional_value . ", " . $active . ");";
+                ('$name' , " . $price . ", '$description' , " . $quantity . ", " . $nutritional_value . ", " . $active . ");";
 
         $this->conn->query($sql);
         $this->CheckProduct();
