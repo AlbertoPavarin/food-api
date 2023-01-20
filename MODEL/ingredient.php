@@ -46,6 +46,16 @@ class IngredientController extends BaseController
 
         return $stmt;
     }
+    
+    public function updateIngredient($id, $name, $description, $price, $extra, $quantity) //Modifica il nome di un ingrediente.
+    {
+        $query = "UPDATE ingredient i SET i.name = '$name',i.description ='$description', i.price =".$price.",i.extra =".$extra.",i.quantity =".$quantity."   WHERE i.id = ' . $id.';";
+
+        $stmt = $this->conn->query($query);
+        $this->SendOutput($stmt, JSON_OK);
+
+        return $stmt;
+    }
 
     public function updateIngredientName($id, $name) //Modifica il nome di un ingrediente.
     {
