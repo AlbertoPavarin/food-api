@@ -19,6 +19,15 @@ Class Class_{
 
         return $stmt;
     }
+    public function setClass($year,$section)  
+    {
+        $query = "insert into class(year,section) values(".$year.",'$section')";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
 
     public function getClass($id) // Ottiene la class che ha l'id passato alla funzione   
     {

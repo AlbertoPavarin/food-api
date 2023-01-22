@@ -16,7 +16,7 @@ if (isset($_GET["carbohydrates"]))
     $carbohydrates = $_GET["carbohydrates"];
 
 if (isset($_GET["sugars"]))
-    $sugars = $_G_GET["sugars"];
+    $sugars = $_GET["sugars"];
  
 if (isset($_GET["proteins"]))
     $proteins = $_GET["proteins"];

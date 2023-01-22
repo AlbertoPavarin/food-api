@@ -1,6 +1,9 @@
 <?php
 require("../../COMMON/connect.php");
-require("../../MODEL/product.php");
+require("../../MODEL/ingredient.php");
+
+if (isset($_GET["id"]))
+    $id = $_GET["id"];
 
 if (isset($_GET["name"]))
     $name = $_GET["name"];
@@ -21,6 +24,6 @@ if (isset($_GET["quantity"]))
 $database = new Database();
 $db_connection = $database->connect();
 
-$controller = new ProductController($db_connection);
-$controller->setIngredient($name, $description,$price,$extra, $quantity);
+$controller = new IngredientController($db_connection);
+$controller->updateIngredient($id, $name, $description,$price,$extra, $quantity);
 ?>
