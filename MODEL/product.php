@@ -17,7 +17,7 @@ class ProductController extends BaseController
     public function GetArchiveProducts() //mostra tutti i prodotti
 
     {
-        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.name as 'Tag'
+        $sql = "SELECT distinct p.id ,p.name, p.price, t.name as 'Tag', p.description, p.nutritional_value, p.quantity, p.active
                 from product p
                 left join product_tag pt on pt.product=p.id
                 left join tag t on t.id=pt.tag
@@ -138,7 +138,7 @@ class ProductController extends BaseController
     public function getArchiveProductsLike($name) // mostra i panini che hanno un nome simile a quello passato
     {
         $formattedName = str_replace("+", " ", $name);
-        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.id as 'Tag'
+        $sql = "SELECT distinct p.id ,p.name, p.price, t.name as 'Tag', p.description, p.nutritional_value, p.quantity, p.active
         from product p
         left join product_tag pt on pt.product=p.id
         left join tag t on t.id=pt.tag
@@ -152,7 +152,7 @@ class ProductController extends BaseController
     public function getArchiveProductsLikeWithTag($name, $tag)
     {
         $formattedName = str_replace("+", " ", $name);
-        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.id as 'Tag'
+        $sql = "SELECT distinct p.id ,p.name, p.price, t.name as 'Tag', p.description, p.nutritional_value, p.quantity, p.active
         from product p
         left join product_tag pt on pt.product=p.id
         left join tag t on t.id=pt.tag
