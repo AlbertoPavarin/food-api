@@ -14,12 +14,12 @@
 
         function setOrderProduct($order_ID, $products) // setta i prodotti di un determinato ordine
         {
-            $query = "INSERT INTO $this->table_name (`order`, `product`) VALUES (?, ?)";
+            $query = "INSERT INTO $this->table_name (`order`, `product`, quantity) VALUES (?, ?, ?)";
             $stmt = $this->conn->prepare($query);
 
             foreach(json_decode($products, true) as $product)
             {
-                $stmt->bind_param('ii', $order_ID, $product['ID']); // lega i parametri alla query e le dice quali sono i paramentri
+                $stmt->bind_param('iii', $order_ID, $product['ID'], $product['quantity']); // lega i parametri alla query e le dice quali sono i paramentri
                 $stmt->execute();
             }
         }
