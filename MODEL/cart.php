@@ -61,5 +61,10 @@ class Cart
         //echo $sql . "</br>";
         return $sql;
     }
+
+    function getCartItemsLike($prod, $user)
+    {
+
+    }
 }
 ?>
