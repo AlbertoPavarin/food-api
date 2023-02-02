@@ -62,9 +62,17 @@ class Cart
         return $sql;
     }
 
-    function getCartItemsLike($prod, $user)
+    function getCartItemsLike($user, $prod)
     {
-
+        $formattedName = str_replace("+", " ", $prod);
+        $sql = "select p.id, c.quantity, p.name, p.price, p.description, t.id as 'tag_id' ";
+        $sql .= "from cart c ";
+        $sql .= "inner join `user` u on u.id = c.`user` ";
+        $sql .= "inner join product p on p.id = c.product ";
+        $sql .= "inner join product_tag pt on pt.product = p.id ";
+        $sql .= "inner join tag t on t.id = pt.tag ";
+        $sql .= "where u.id = " . $user . " and p.name like '%$formattedName%'";
+        return $sql;
     }
 }
 ?>
