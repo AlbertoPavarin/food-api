@@ -20,7 +20,6 @@ $conn = $dtbase->connect();
 
 $cart = new Cart();
 $queryProductsCart = $cart->getCartItemsLike($_GET['user'], $_GET['product']);
-var_dump($queryProductsCart);
 $result = $conn->query($queryProductsCart);
 
 if (mysqli_num_rows($result) > 0) {
