@@ -29,8 +29,8 @@ if ($stmt->num_rows > 0) // Se la funzione getOrderProduct ha ritornato dei reco
        extract($record);
        $order_record = array(
         'order' => $order,
-        'product' => $product
-        //'quantity' => $quantity
+        'product' => $product,
+        'quantity' => $quantity
        );
        array_push($order_arr, $order_record);
     }
