@@ -61,7 +61,17 @@ class ProductController extends BaseController
         $result = $this->conn->query($sql);
         $this->SendOutput($result, JSON_OK);
     }
-
+    function getActiveProductByTag($tag){
+        $sql="select distinct p.id, p.name, p.description, p.price,p.quantity, p.nutritional_value, p_i.ingredient 
+        from product p
+        inner join product_ingredient p_i on p_i.product = p.id
+        inner join product_allergen pa on pa.product = p.id
+        inner join product_tag pt ON pt.product = p.id and pt.tag =".$tag."
+        inner join product_offer po ON po.product = p.id
+        order by p.id ;";
+        $result = $this->conn->query($sql);
+        $this->SendOutput($result, JSON_OK);
+    }
     public function CheckIngredient() //Mostro ingredienti disponibili e loro quantità
 
     {

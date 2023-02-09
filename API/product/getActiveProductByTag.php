@@ -9,7 +9,7 @@ require("../../MODEL/product.php");
 $database = new Database();
 $db_connection = $database->connect();
 
-if (!isset($_GET['nome_panino']) && !isset($_GET['tag_id']))
+if (!isset($_GET['TAG_ID']))
 {
     http_response_code(400);
     die(json_encode(["message" => "No id found"]));
@@ -17,8 +17,7 @@ if (!isset($_GET['nome_panino']) && !isset($_GET['tag_id']))
 
 $controller = new ProductController($db_connection);
 
-$name = $_GET['nome_panino'];
-$tag = $_GET['tag_id'];
+$tag = $_GET['TAG_ID'];
 
-$controller->getArchiveProductsLikeWithTag($name, $tag);
+$controller->getActiveProductByTag($tag);
 ?>
