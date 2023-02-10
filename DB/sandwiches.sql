@@ -193,3 +193,5 @@ ALTER TABLE sandwiches.user_class  ADD CONSTRAINT fk_user_class_class FOREIGN KE
 ALTER TABLE sandwiches.product_offer ADD CONSTRAINT fk_product_offer_product FOREIGN KEY ( product ) REFERENCES sandwiches.product ( id );
 
 ALTER TABLE sandwiches.product_offer  ADD CONSTRAINT fk_product_offer_offer FOREIGN KEY ( offer ) REFERENCES sandwiches.offer ( id );
+
+ALTER TABLE sandwiches.cart ADD CONSTRAINT pk_cart PRIMARY KEY (product, `user`);
