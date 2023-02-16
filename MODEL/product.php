@@ -40,7 +40,17 @@ class ProductController extends BaseController
         $result = $this->conn->query($sql);
         $this->SendOutput($result, JSON_OK);
     }
+    function getProductAllergen($product){
+        $sql = "select distinct a.name, a.id
+        from allergen a
+        inner join product_allergen pa on a.id = pa.allergen
+        inner join product p on pa.product = ".$product."
+        order by a.id;";
 
+        $result = $this->conn->query($sql);
+        $this->SendOutput($result, JSON_OK);
+
+    }
     public function getIngredientById($ingredient_ID)
     {
         $sql = "SELECT i.id ,i.name , i.price as 'price', i.extra , i.quantity , i.description
@@ -70,7 +80,6 @@ class ProductController extends BaseController
         $this->SendOutput($result, JSON_OK);
     }
     public function CheckIngredient() //Mostro ingredienti disponibili e loro quantità
-
     {
         $sql = "select distinct i.name, i.price,i.quantity
                 from ingredient i
