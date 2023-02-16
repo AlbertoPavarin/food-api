@@ -22,6 +22,13 @@ class Cart
     //     $sql .= "where a.ID = " .$user_ID;
     //     return $sql;
     // }
+    function updateCartQuantity($prod, $user, $quantity){
+        $sql = "update cart 
+                set quantity = ".$quantity." 
+                where product = ".$prod." and `user` = ".$user.";";
+
+        return $sql;
+    }
 
     function addItem($prod, $user, $quantity)
     { //aggiunge un prodotto al carrello dell'utente
